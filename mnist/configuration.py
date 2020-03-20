@@ -4,7 +4,7 @@ import json
 
 class Configuration:
     """
-    Configures the model training pipeline
+    Class reponsible for loading a json config file
     """
 
     def __init__(self, config_path: str):
@@ -13,7 +13,7 @@ class Configuration:
 
     def _read_parameters(self) -> Dict:
         """
-        reads parameters from configs
+        reads parameters from config
         """
         parameters = json.load(open(self.config_path, "r"))
         return parameters

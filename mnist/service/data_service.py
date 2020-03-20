@@ -16,7 +16,7 @@ class DataService:
 
     def save(self, path: str = "input_data"):
         """
-        :return:
+        saves data to the provided path
         """
         mnist_path = Path(path)
         if not (mnist_path / self.FILENAME).exists():
