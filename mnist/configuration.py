@@ -13,7 +13,7 @@ class Configuration:
 
     def _read_parameters(self) -> Dict:
         """
-        reads parameters from config
+        reads parameters from configs
         """
         parameters = json.load(open(self.config_path, "r"))
         return parameters
