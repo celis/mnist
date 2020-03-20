@@ -1,0 +1,9 @@
+{
+   "data_path": "input_data",
+   "model_artifact": "output_data/logistic_regression.pt",
+   "trainer": {
+      "epochs": 100,
+      "lr": 0.01,
+      "batch_size": 5
+   }
+}

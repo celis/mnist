@@ -3,9 +3,15 @@ import pickle
 import gzip
 import torch
 from typing import Tuple
+from os.path import join
 
 
 class CustomDataource:
+    """
+    """
+
+    FILENAME = "mnist.pkl.gz"
+
     def __init__(self, path: str):
         self.path = path
 
@@ -13,7 +19,7 @@ class CustomDataource:
         """
         :return:
         """
-        with gzip.open((self.path), "rb") as f:
+        with gzip.open((join(self.path, self.FILENAME)), "rb") as f:
             ((x_train, y_train), (x_valid, y_valid), _) = pickle.load(
                 f, encoding="latin-1"
             )
@@ -23,6 +29,6 @@ class CustomDataource:
         )
 
         train_dataset = TensorDataset(x_train, y_train)
-        valid_dataset = TensorDataset(x_valid, y_valid)
+        validation_dataset = TensorDataset(x_valid, y_valid)
 
-        return train_dataset, valid_dataset
+        return train_dataset, validation_dataset

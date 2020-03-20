@@ -11,17 +11,13 @@ class DataService:
     FILENAME = "mnist.pkl.gz"
 
     def __init__(self):
-        self._data = None
-
-    def load(self):
-        """
-        :return:
-        """
-        self._data = requests.get(join(self.URL, self.FILENAME)).content
+        pass
 
     def save(self, path: str = "input_data"):
         """
         :return:
         """
         mnist_path = Path(path)
-        (mnist_path / self.FILENAME).open("wb").write(self._data)
+        if not (mnist_path / self.FILENAME).exists():
+            data = requests.get(join(self.URL, self.FILENAME)).content
+            (mnist_path / self.FILENAME).open("wb").write(data)
