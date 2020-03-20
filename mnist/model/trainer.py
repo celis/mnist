@@ -60,7 +60,7 @@ class Trainer:
             train_dataset, valid_dataset
         )
 
-        for epoch in range(self.epochs):
+        for epoch in range(1, self.epochs + 1):
             self.model.train()
             for x, y in train_dataloader:
                 self._loss_batch(x, y, self.optimizer)
