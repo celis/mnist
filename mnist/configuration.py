@@ -4,6 +4,7 @@ import json
 
 class Configuration:
     """
+    Configures the model training pipeline
     """
 
     def __init__(self, config_path: str):

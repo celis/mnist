@@ -22,11 +22,6 @@ if __name__ == "__main__":
 
     model = LogisticRegression()
 
-    trainer = Trainer(model =model, **config["trainer"])
-    trainer.fit(train_dataset, validation_dataset )
+    trainer = Trainer(model=model, **config["trainer"])
+    trainer.fit(train_dataset, validation_dataset)
     trainer.save(config["model_artifact"])
-
-
-
-
-

@@ -8,6 +8,9 @@ import logging
 
 
 class Trainer:
+    """
+    Trainer class with methods taking care of model training and storage of model artifact
+    """
 
     def __init__(self, model, batch_size, epochs, lr):
         self.model = model
@@ -18,14 +21,25 @@ class Trainer:
         self.optimizer = optim.SGD(model.parameters(), lr=lr)
 
     def _get_data(
-            self, train_dataset: TensorDataset, validation_dataset: TensorDataset
+        self, train_dataset: TensorDataset, validation_dataset: TensorDataset
     ):
+        """
+        :param train_dataset:
+        :param validation_dataset:
+        :return:
+        """
         return (
             DataLoader(train_dataset, batch_size=self.batch_size, shuffle=True),
-            DataLoader(validation_dataset, batch_size=self.batch_size * 2)
+            DataLoader(validation_dataset, batch_size=self.batch_size * 2),
         )
 
     def _loss_batch(self, x, y, optimizer=None):
+        """
+        :param x:
+        :param y:
+        :param optimizer:
+        :return:
+        """
         loss = self.loss_function(self.model(x), y)
 
         if optimizer is not None:
@@ -36,8 +50,15 @@ class Trainer:
         return loss.item(), len(x)
 
     def fit(self, train_dataset, valid_dataset):
+        """
+        :param train_dataset:
+        :param valid_dataset:
+        :return:
+        """
 
-        (train_dataloader, valid_dataloader) = self._get_data(train_dataset, valid_dataset)
+        (train_dataloader, valid_dataloader) = self._get_data(
+            train_dataset, valid_dataset
+        )
 
         for epoch in range(self.epochs):
             self.model.train()
@@ -54,4 +75,8 @@ class Trainer:
             logging.info(f" epoch: { epoch }, loss: { loss_value }")
 
     def save(self, path: str):
+        """
+        :param path:
+        :return:
+        """
         torch.save(self.model.state_dict(), path)

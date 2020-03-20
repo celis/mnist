@@ -3,6 +3,7 @@ from torch import nn
 
 class LogisticRegression(nn.Module):
     """
+    Implements Logistic Regression model
     """
 
     def __init__(self):

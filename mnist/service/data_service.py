@@ -5,6 +5,7 @@ from pathlib import Path
 
 class DataService:
     """
+    Class responsible for getting the MNIST dataset to disk
     """
 
     URL = "http://deeplearning.net/data/mnist"
