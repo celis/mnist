@@ -1,8 +1,0 @@
-{
-   "s3":{
-      "region_name":"eu-central-1",
-      "bucket":"mnist-project",
-      "access_key":"AKIAXU77HDKGSE7GMEN7",
-      "secret_key":"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"
-   }
-}
