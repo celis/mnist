@@ -2,3 +2,4 @@
 .idea
 __pycache__/
 *.ipynb
+aws_config.json
