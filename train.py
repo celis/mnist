@@ -27,7 +27,7 @@ if __name__ == "__main__":
     trainer.fit(train_dataset, validation_dataset)
     trainer.save(config["model_artifact"])
 
-    aws_config = Configuration("configs/aws_config.json")
-    s3 = S3(aws_config)
+    aws_config = Configuration("configs/aws_config.json").parameters["s3"]
+    s3 = S3(**aws_config)
     filename, key = config["model_artifact"], config["model_artifact"].split('/')[1]
     s3.upload(filename, key)

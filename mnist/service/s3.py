@@ -1,5 +1,4 @@
 import boto3
-from mnist.configuration import Configuration
 
 
 class S3:
@@ -7,8 +6,11 @@ class S3:
     Service class handling connection with AWS S3
     """
 
-    def __init__(self, config: Configuration):
-        self.config = config
+    def __init__(self, region_name, access_key, secret_key, bucket):
+        self.region_name = region_name
+        self.access_key = access_key
+        self.secret_key = secret_key
+        self.bucket = bucket
 
     def _boto3_client(self):
         """
@@ -16,9 +18,9 @@ class S3:
         """
         boto3_client = boto3.client(
             "s3",
-            region_name=self.config["s3"]["region_name"],
-            aws_access_key_id=self.config["s3"]["access_key"],
-            aws_secret_access_key=self.config["s3"]["secret_key"],
+            region_name=self.region_name,
+            aws_access_key_id=self.access_key,
+            aws_secret_access_key=self.secret_key,
         )
         return boto3_client
 
@@ -30,4 +32,4 @@ class S3:
         key: The name of the key to upload to.
         """
         boto3_client = self._boto3_client()
-        boto3_client.upload_file(filename, self.config["s3"]["bucket"], key)
+        boto3_client.upload_file(filename, self.bucket, key)
