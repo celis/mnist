@@ -29,5 +29,5 @@ if __name__ == "__main__":
 
     aws_config = Configuration("configs/aws_config.json").parameters["s3"]
     s3 = S3(**aws_config)
-    filename, key = config["model_artifact"], config["model_artifact"].split('/')[1]
+    filename, key = config["model_artifact"], config["model_artifact"].split("/")[1]
     s3.upload(filename, key)
