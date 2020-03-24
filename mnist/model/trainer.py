@@ -12,7 +12,7 @@ class Trainer:
     Trainer class with methods taking care of model training and storage of model artifact
     """
 
-    def __init__(self, model, batch_size, epochs, lr):
+    def __init__(self, model, batch_size: int, epochs: int, lr: float):
         self.model = model
         self.batch_size = batch_size
         self.lr = lr
@@ -24,21 +24,17 @@ class Trainer:
         self, train_dataset: TensorDataset, validation_dataset: TensorDataset
     ):
         """
-        :param train_dataset:
-        :param validation_dataset:
-        :return:
+        Generates DataLoader instances for training and validation data
         """
         return (
             DataLoader(train_dataset, batch_size=self.batch_size, shuffle=True),
             DataLoader(validation_dataset, batch_size=self.batch_size * 2),
         )
 
-    def _loss_batch(self, x, y, optimizer=None):
+    def _loss_batch(self, x: torch.Tensor, y: torch.Tensor, optimizer=None):
         """
-        :param x:
-        :param y:
-        :param optimizer:
-        :return:
+        Updates model parameters with a forward and backward pass
+        on a batch, returns loss value and batch size
         """
         loss = self.loss_function(self.model(x), y)
 
@@ -49,11 +45,9 @@ class Trainer:
 
         return loss.item(), len(x)
 
-    def fit(self, train_dataset, valid_dataset):
+    def fit(self, train_dataset: TensorDataset, valid_dataset: TensorDataset):
         """
-        :param train_dataset:
-        :param valid_dataset:
-        :return:
+        Performs model training
         """
 
         (train_dataloader, valid_dataloader) = self._get_data(
@@ -76,7 +70,6 @@ class Trainer:
 
     def save(self, path: str):
         """
-        :param path:
-        :return:
+        Stores model artifact in 'path'
         """
         torch.save(self.model.state_dict(), path)

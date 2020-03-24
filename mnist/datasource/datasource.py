@@ -8,7 +8,8 @@ from os.path import join
 
 class CustomDataource:
     """
-    Datasource class with method to produce the required Dataset instances with training and validation data.
+    Datasource class with method to load MNIST data
+    and produce the required Dataset instances with training and validation data.
     """
 
     FILENAME = "mnist.pkl.gz"
@@ -18,7 +19,7 @@ class CustomDataource:
 
     def transform(self) -> Tuple[TensorDataset, TensorDataset]:
         """
-        Returns dataset instances fror training and validation
+        Returns Dataset instances for training and validation
         """
         with gzip.open((join(self.path, self.FILENAME)), "rb") as f:
             ((x_train, y_train), (x_valid, y_valid), _) = pickle.load(
