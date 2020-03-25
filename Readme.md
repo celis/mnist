@@ -1,6 +1,6 @@
 # MNIST
 
-Repository for training a classifier on the mnist datatset using Pytorch,
+Repository for training a classifier on the mnist datatset using PyTorch,
 follows the tutorial [What is torch.nn really?](https://pytorch.org/tutorials/beginner/nn_tutorial.html).
 
 # Usage
